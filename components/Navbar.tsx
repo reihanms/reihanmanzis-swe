@@ -11,7 +11,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       // Set to true if scrolled past the hero section (100vh)
-      setIsScrolled(window.scrollY > window.innerHeight * 0.9);
+      setIsScrolled(window.scrollY > window.innerHeight * 0.1);
     };
 
     window.addEventListener("scroll", handleScroll);
