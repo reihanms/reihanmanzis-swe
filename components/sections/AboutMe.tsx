@@ -31,20 +31,26 @@ export default function AboutMe() {
                 I&apos;ve built products for companies and businesses ranging
                 from marketing websites, internal applications to complex
                 solutions and enterprise apps with focus on fast, elegant and
-                accessible user experiences. I&apos;m passionate about creating
-                complete, user-centric applications. With a strong foundation in
-                the TypeScript ecosystem—including React, Next.js, and Node.js—I
-                specialize in crafting modern, performant, and scalable web
-                experiences.
+                accessible user experiences.
               </p>
 
               <p className="text-white text-base md:text-lg text-center md:text-left">
-                My journey is best showcased by my latest project,{" "}
-                <strong>Roam</strong>. It&apos;s an end-to-end travel platform
-                where I engineered everything from an interactive frontend and
-                real-time chat to a robust backend powered by Supabase,
-                demonstrating my ability to architect and deliver complex,
-                feature-rich applications.
+                My journey has led me to my current role as a Software Engineer
+                at <strong>Synergy Financial Advisers</strong>, where I operate
+                in a dynamic international setting across Singapore and
+                Indonesia. Here, I&apos;m engineering a core super-app with
+                Next.js, focusing on critical aspects like performance, and
+                robust, multi-factor authentication (Passkey, OAuth) to deliver
+                a secure and seamless experience.
+              </p>
+
+              <p className="text-white text-base md:text-lg text-center md:text-left">
+                This role builds upon my full-stack foundation from{" "}
+                <strong>FolkaTech</strong>, where I architected end-to-end
+                solutions with Nest.js, PostgreSQL, and Docker, and my creative
+                frontend work at <strong>Telkom Indonesia</strong>, where I
+                crafted highly interactive interfaces using Framer Motion within
+                an Agile environment.
               </p>
 
               <p className="text-white text-base md:text-lg text-center md:text-left">
