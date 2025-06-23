@@ -9,11 +9,11 @@ export default function Contact() {
       className="pt-20 pb-20 flex items-center justify-center flex-col gap-10 relative h-[100dvh]"
     >
       <GlowingCircle
-        className="top-0 left-0"
+        className="top-0 left-0 hidden md:block"
         animation="move-horizontal 4s ease-in-out infinite"
       />
       <GlowingCircle
-        className="bottom-0 right-0"
+        className="bottom-0 right-0 hidden md:block"
         animation="move-vertical 4s ease-in-out infinite"
       />
       <h1 className="text-5xl md:text-7xl font-bold font-sans max-w-xl text-center">

@@ -42,7 +42,7 @@ const CustomCursor = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary-100/50 z-[9999] flex justify-center items-center pointer-events-none"
+      className="hidden fixed top-0 left-0 w-8 h-8 rounded-full border border-primary-100/50 z-[9999] md:flex justify-center items-center pointer-events-none"
       style={{
         translateX: springX,
         translateY: springY,
