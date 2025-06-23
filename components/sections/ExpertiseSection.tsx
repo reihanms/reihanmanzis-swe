@@ -84,7 +84,7 @@ export default function ExpertiseSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         viewport={{ once: true }}
-        className="text-7xl font-bold font-sans"
+        className="text-5xl md:text-7xl font-bold font-sans"
       >
         My Expertise
       </motion.h1>
@@ -95,7 +95,7 @@ export default function ExpertiseSection() {
         viewport={{ once: true }}
         className="container mx-auto px-4"
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative">
           {expertiseData.map((expertise, index) => (
             <ExpertiseCard key={index} variants={itemVariants} {...expertise} />
           ))}

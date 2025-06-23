@@ -17,17 +17,20 @@ const HeroSection = () => {
     {
       src: "/images/obj-2.png",
       alt: "Abstract object 2",
-      className: "w-20 h-20 bottom-[20%] left-[40%] rotate-12 opacity-70",
+      className:
+        "w-20 h-20 bottom-[20%] left-[40%] rotate-12 opacity-70 hidden md:block",
     },
     {
       src: "/images/obj-3.png",
       alt: "Abstract object 3",
-      className: "w-20 h-20 bottom-[20%] left-[45%] rotate-[-20deg] opacity-70",
+      className:
+        "w-20 h-20 bottom-[20%] left-[45%] rotate-[-20deg] opacity-70 hidden md:block",
     },
     {
       src: "/images/obj-1.png",
       alt: "Abstract object 4",
-      className: "w-52 h-52 bottom-[20%] right-[35%] rotate-[90deg] opacity-70",
+      className:
+        "w-52 h-52 bottom-[20%] right-[35%] rotate-[90deg] opacity-70 hidden md:block",
     },
     {
       src: "/images/obj-5.png",
@@ -71,11 +74,11 @@ const HeroSection = () => {
           />
         ))}
       </div>
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
-        <h1 className="text-[10rem] font-bold font-mono tracking-widest">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center p-4">
+        <h1 className="text-5xl md:text-[10rem] font-bold font-mono tracking-widest">
           REIHAN MS.
         </h1>
-        <p className="mt-4 text-2xl font-mono">
+        <p className="mt-4 text-lg md:text-2xl font-mono">
           SOFTWARE ENGINEER, FRONT END & BACK END DEVELOPER.
         </p>
         <div className="w-full mt-20">

@@ -150,7 +150,7 @@ const ProfessionalExperiences = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         viewport={{ once: true }}
-        className="text-7xl font-bold font-sans text-center max-w-md"
+        className="text-5xl md:text-7xl font-bold font-sans text-center max-w-md"
       >
         Professional Experience
       </motion.h1>
@@ -177,14 +177,25 @@ const ProfessionalExperiences = () => {
                 className="border-none mb-4"
               >
                 <AccordionTrigger className="p-4 bg-primary-400 rounded-lg hover:no-underline cursor-pointer">
-                  <div className="w-full flex justify-between items-center">
+                  <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center text-left">
                     <span className="font-bold text-lg text-left">
                       {exp.role} @ {exp.company}
                     </span>
-                    <span className="text-right">{exp.date}</span>
+                    <span className="text-left md:text-right mt-1 md:mt-0 text-sm md:text-base">
+                      {exp.date}
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="p-4 bg-primary-500 rounded-b-lg mt-1">
+                  {exp.logo && (
+                    <Image
+                      src={exp.logo}
+                      alt={`${exp.company} logo`}
+                      width={100}
+                      height={100}
+                      className="object-contain block md:hidden mb-4"
+                    />
+                  )}
                   <div className="flex justify-between items-start">
                     <div>
                       <div className="flex items-center gap-4 mb-4">
@@ -222,7 +233,7 @@ const ProfessionalExperiences = () => {
                         alt={`${exp.company} logo`}
                         width={100}
                         height={100}
-                        className="object-contain"
+                        className="object-contain hidden md:block"
                       />
                     )}
                   </div>

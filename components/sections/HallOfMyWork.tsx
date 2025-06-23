@@ -90,7 +90,7 @@ export default function HallOfMyWork() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         viewport={{ once: true }}
-        className="text-7xl font-bold font-sans"
+        className="text-5xl md:text-7xl font-bold font-sans text-center"
       >
         Hall of My Work
       </motion.h1>
@@ -118,35 +118,33 @@ export default function HallOfMyWork() {
           return (
             <div key={index} className="flex flex-col mb-20">
               <div
-                className={`flex gap-10 ${
-                  isReversed ? "flex-row-reverse" : "flex-row"
-                }`}
+                className={`flex flex-col ${
+                  isReversed ? "md:flex-row-reverse" : "md:flex-row"
+                } gap-10`}
               >
                 <motion.div
                   variants={textVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className={`w-1/2 flex flex-col gap-4 justify-center ${
+                  className={`w-full md:w-1/2 flex flex-col gap-4 justify-center text-center items-center ${
                     isReversed
-                      ? "text-right items-end"
-                      : "text-left items-start"
+                      ? "md:text-right md:items-end"
+                      : "md:text-left md:items-start"
                   }`}
                 >
-                  <h2 className="text-8xl font-bold font-sans">
+                  <h2 className="text-6xl md:text-8xl font-bold font-sans">
                     {project.title}
                   </h2>
-                  <p className="text-xl text-white font-mono">
+                  <p className="text-lg md:text-xl text-white font-mono">
                     {project.description}
                   </p>
                   <div
-                    className={`flex justify-between items-center w-full ${
+                    className={`justify-between items-center w-full hidden md:flex ${
                       isReversed ? "flex-row-reverse" : "flex-row"
                     }`}
                   >
-                    <span className="cursor-pointer underline text-primary-100 font-sans mt-5">
-                      Details
-                    </span>
+                    <span className="cursor-pointer underline text-primary-100 font-sans mt-5"></span>
                     {project.projectLink && (
                       <Link href={project.projectLink} target="_blank">
                         <button className="flex items-center gap-2 bg-primary-300 text-white px-4 py-3 hover:bg-primary-400 transition-colors cursor-pointer rounded-sm">
@@ -163,7 +161,7 @@ export default function HallOfMyWork() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="w-1/2"
+                  className="w-full md:w-1/2"
                 >
                   {project.video ? (
                     <video
@@ -187,7 +185,7 @@ export default function HallOfMyWork() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeInOut", delay: 0.4 }}
                 viewport={{ once: true }}
-                className="mt-4 overflow-hidden flex gap-4"
+                className="mt-4 overflow-x-auto flex gap-4 scrollbar-hide"
               >
                 {[...project.images, ...project.images].map((image, i) => (
                   <div key={i} className="flex-shrink-0 max-h-[225px]">
@@ -201,6 +199,17 @@ export default function HallOfMyWork() {
                   </div>
                 ))}
               </motion.div>
+              {project.projectLink && (
+                <Link
+                  href={project.projectLink}
+                  target="_blank"
+                  className="md:hidden flex justify-center mt-4"
+                >
+                  <button className="flex items-center gap-2 bg-primary-300 text-white px-4 py-3 hover:bg-primary-400 transition-colors cursor-pointer rounded-sm">
+                    <span className="font-mono font-medium">VIEW PROJECT</span>
+                  </button>
+                </Link>
+              )}
             </div>
           );
         })}

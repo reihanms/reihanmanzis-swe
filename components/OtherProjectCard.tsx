@@ -15,7 +15,7 @@ const OtherProjectCard: React.FC<OtherProjectCardProps> = ({
   image,
 }) => {
   return (
-    <div className="border border-primary-500 rounded-lg p-6 flex flex-col gap-4 hover:bg-primary-500/20 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer">
+    <div className="border border-primary-500 rounded-lg p-6 flex flex-col gap-4 hover:bg-primary-500/20 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-crosshair">
       <div className="relative w-full h-48 mb-4">
         <Image
           src={image}
