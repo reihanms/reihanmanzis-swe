@@ -28,10 +28,12 @@ export default function AboutMe() {
                 Over the years,
               </h1>
               <p className="text-white text-base md:text-lg text-center md:text-left">
-                I&apos;ve grown from a software engineer into a full-stack
-                product builder, passionate about creating complete,
-                user-centric applications. With a strong foundation in the
-                TypeScript ecosystem—including React, Next.js, and Node.js—I
+                I&apos;ve built products for companies and businesses ranging
+                from marketing websites, internal applications to complex
+                solutions and enterprise apps with focus on fast, elegant and
+                accessible user experiences. I&apos;m passionate about creating
+                complete, user-centric applications. With a strong foundation in
+                the TypeScript ecosystem—including React, Next.js, and Node.js—I
                 specialize in crafting modern, performant, and scalable web
                 experiences.
               </p>
@@ -47,10 +49,9 @@ export default function AboutMe() {
 
               <p className="text-white text-base md:text-lg text-center md:text-left">
                 Driven by a desire for continuous growth, I am now seeking to
-                apply my skills in a challenging, remote-first environment. I am
-                eager to collaborate with a global team to build products that
-                not only solve complex problems but also deliver exceptional
-                user experiences.
+                apply my skills in a challenging. I am eager to collaborate with
+                a global team to build products that not only solve complex
+                problems but also deliver exceptional user experiences.
               </p>
             </motion.div>
             <motion.div
