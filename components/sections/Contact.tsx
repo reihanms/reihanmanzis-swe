@@ -30,7 +30,7 @@ export default function Contact() {
         amazing together.
       </p>
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-8">
-        <Link
+        {/* <Link
           href="mailto:reihanmanzis1@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
@@ -38,7 +38,7 @@ export default function Contact() {
           className="text-white text-lg font-mono underline"
         >
           Gmail
-        </Link>
+        </Link> */}
         <Link
           href="https://www.linkedin.com/in/reihan-manzis-syahputra/"
           target="_blank"
