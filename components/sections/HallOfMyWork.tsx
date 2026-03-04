@@ -51,7 +51,6 @@ const projects: Project[] = [
     thumbnail: IdeaboxThumbnail,
     images: [Ideabox1, Ideabox2, Ideabox3, Ideabox4],
     layout: "reversed",
-    projectLink: "https://ideabox-test.vercel.app/",
   },
   {
     title: "Amoeba Landing Page",
