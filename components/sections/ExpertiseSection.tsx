@@ -1,117 +1,138 @@
 "use client";
 
-import {
-  ChevronsLeftRightEllipsis,
-  Code,
-  Monitor,
-  Network,
-  Orbit,
-  PaintRoller,
-  Server,
-  Sparkles,
-} from "lucide-react";
-import ExpertiseCard from "../ExpertiseCard";
+import React from "react";
 import { motion } from "framer-motion";
+import {
+  Cloud,
+  CreditCard,
+  Layers,
+  LayoutTemplate,
+  PenTool,
+  ShieldCheck,
+} from "lucide-react";
 
-const expertiseData = [
+import SectionHeading from "@/components/ui/SectionHeading";
+import { cn } from "@/lib/utils";
+
+interface Expertise {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  proof: string;
+  tools: string[];
+  className?: string;
+}
+
+const expertise: Expertise[] = [
   {
-    icon: <Orbit size={40} />,
-    title: "Frontend Development",
-    subtitle: "React, Next.js, TypeScript",
+    icon: <LayoutTemplate size={22} />,
+    title: "Front-end engineering",
     description:
-      "Crafting modern, responsive, and performant web applications. My focus is on building intuitive user interfaces and seamless, interactive experiences that drive user engagement.",
+      "Fast, accessible interfaces with the Next.js App Router, server rendering and careful caching, plus motion where it actually helps.",
+    proof: "GoTypical's marketing site and app · Synergy's super app",
+    tools: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    className: "md:col-span-2",
   },
   {
-    icon: <Sparkles size={40} />,
-    title: "AI-Powered Development",
-    subtitle: "AI Agents & Code Generation",
+    icon: <ShieldCheck size={22} />,
+    title: "Auth & security",
     description:
-      "Leveraging modern AI agents like Windsurf AI and Cursor to accelerate development cycles, improve code quality, and solve complex problems with greater efficiency.",
+      "Sign-in that is secure without getting in the way: OAuth, Passkey, credentials and QR-code login.",
+    proof: "Synergy · thesis on Next.js security against the OWASP Top 10",
+    tools: ["OAuth", "Passkey", "OWASP"],
   },
   {
-    icon: <Code size={40} />,
-    title: "Backend & BaaS",
-    subtitle: "Supabase, NestJS, Python",
+    icon: <Layers size={22} />,
+    title: "Back end & data",
     description:
-      "Building secure and efficient server-side solutions. I specialize in designing RESTful APIs, managing databases, and handling core business logic, whether with a custom backend or a Backend-as-a-Service.",
+      "APIs, server actions and data models that stay clean as the product grows.",
+    proof: "GoTypical · Folkatech client projects · Telkomsel I-Recruitment",
+    tools: ["NestJS", "Node.js", "Prisma", "PostgreSQL", "MySQL"],
   },
   {
-    icon: <Monitor size={40} />,
-    title: "Full-Stack Development",
-    subtitle: "From Concept to Deployment",
+    icon: <CreditCard size={22} />,
+    title: "Payments, search & realtime",
     description:
-      "Taking a holistic approach to building products. I guide projects through the entire lifecycle—from planning and architectural design to development, testing, and deployment—ensuring the final result is robust and scalable.",
+      "The product plumbing: subscriptions with webhooks that run exactly once, instant search, and live messaging.",
+    proof: "GoTypical Premium, ⌘K search and direct messages",
+    tools: ["Stripe", "Algolia", "Pusher", "Supabase"],
   },
   {
-    icon: <Server size={40} />,
-    title: "Deployment",
-    subtitle: "Vercel, Docker",
+    icon: <Cloud size={22} />,
+    title: "Cloud & DevOps",
     description:
-      "Automating the path from code to production. Experienced in deploying to modern cloud platforms like Vercel for optimal performance and reliability.",
+      "Versioned releases, backups with a tested restore path, bot protection and error monitoring.",
+    proof: "GoTypical on Vercel · CI/CD and containers at Synergy",
+    tools: ["Vercel", "Docker", "CI/CD", "Sentry"],
   },
   {
-    icon: <Network size={40} />,
-    title: "Software Architecture",
-    subtitle: "Scalable & Maintainable Design",
+    icon: <PenTool size={22} />,
+    title: "Product & UI design",
     description:
-      "Designing robust and scalable system architectures. I focus on creating clean codebases and well-structured systems that are built to last and easy to evolve over time.",
+      "From a client's idea to a design system and a shipped product, with AI tools speeding up the loop.",
+    proof: "GoTypical's design system · Claude Code and Cursor every day",
+    tools: ["Design systems", "UI design", "Claude Code", "Cursor"],
+    className: "md:col-span-3",
   },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
 
 export default function ExpertiseSection() {
   return (
     <section
       id="expertise"
-      className="pt-20 flex items-center justify-center flex-col gap-20"
+      className="container mx-auto flex flex-col gap-12 py-24"
     >
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        viewport={{ once: true }}
-        className="text-5xl md:text-7xl font-bold font-sans"
-      >
-        My Expertise
-      </motion.h1>
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="container mx-auto px-4"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative">
-          {expertiseData.map((expertise, index) => (
-            <ExpertiseCard key={index} variants={itemVariants} {...expertise} />
-          ))}
-          <div className="absolute bottom-10 right-10 rotate-70">
-            <PaintRoller size={40} />
-          </div>
-        </div>
-      </motion.div>
-      <ChevronsLeftRightEllipsis
-        size={60}
-        className="rotate-90 text-primary-100"
-        style={{
-          animation: "move-horizontal 2s ease-in-out infinite",
-        }}
+      <SectionHeading
+        eyebrow="Expertise"
+        title="What I bring to a team"
+        description="The work I do most, and where you can see it."
       />
+
+      <div className="grid gap-4 md:grid-cols-3">
+        {expertise.map((item, index) => (
+          <motion.article
+            key={item.title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: (index % 3) * 0.08,
+            }}
+            className={cn(
+              "group relative flex flex-col gap-5 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-primary-200/40 md:p-8",
+              item.className
+            )}
+          >
+            <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-primary-300/0 blur-3xl transition-colors duration-500 group-hover:bg-primary-300/20" />
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-primary-200/30 bg-primary-500/60 text-primary-100">
+              {item.icon}
+            </span>
+            <div className="flex flex-col gap-2">
+              <h3 className="text-xl font-semibold md:text-2xl">
+                {item.title}
+              </h3>
+              <p className="leading-relaxed text-white/60">
+                {item.description}
+              </p>
+            </div>
+            <p className="font-mono text-xs leading-relaxed text-primary-100/80">
+              ↳ {item.proof}
+            </p>
+            <div className="mt-auto flex flex-wrap gap-2">
+              {item.tools.map((tool) => (
+                <span
+                  key={tool}
+                  className="rounded-full bg-white/5 px-3 py-1 text-xs text-white/70"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </motion.article>
+        ))}
+      </div>
     </section>
   );
 }
-

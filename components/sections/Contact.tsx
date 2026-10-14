@@ -1,73 +1,91 @@
-import Link from "next/link";
-import React from "react";
-import GlowingCircle from "../GlowingCircle";
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Check, Copy, Mail } from "lucide-react";
+
+import { site } from "@/lib/site";
+
+const channels = [
+  { label: "Upwork", href: site.links.upwork },
+  { label: "LinkedIn", href: site.links.linkedin },
+  { label: "GitHub", href: site.links.github },
+];
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(site.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${site.email}`;
+    }
+  };
+
   return (
-    <section
-      id="contact"
-      className="pt-20 pb-20 flex items-center justify-center flex-col gap-10 relative h-[100dvh]"
-    >
-      <GlowingCircle
-        className="top-0 left-0 hidden md:block"
-        animation="move-horizontal 4s ease-in-out infinite"
-      />
-      <GlowingCircle
-        className="bottom-0 right-0 hidden md:block"
-        animation="move-vertical 4s ease-in-out infinite"
-      />
-      <h1 className="text-5xl md:text-7xl font-bold font-sans max-w-xl text-center">
-        Have a Project in Mind?
-      </h1>
-      <p className="text-white text-lg md:text-2xl container text-center max-w-5xl">
-        I am open to a variety of collaborations. Whether you&apos;re looking
-        for a full-time engineer for your team, a reliable freelance engineer
-        for a specific project, or a passionate partner for a new venture, I
-        would love to hear about it.
-        <br />
-        <br />
-        My inbox is always open. Let&apos;s discuss how we can create something
-        amazing together.
-      </p>
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-8">
-        {/* <Link
-          href="mailto:reihanmanzis1@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Gmail"
-          className="text-white text-lg font-mono underline"
-        >
-          Gmail
-        </Link> */}
-        <Link
-          href="https://www.linkedin.com/in/reihan-manzis-syahputra/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          className="text-white text-lg font-mono underline"
-        >
-          LinkedIn
-        </Link>
-        <Link
-          href="https://github.com/reihanms"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          className="text-white text-lg font-mono underline"
-        >
-          GitHub
-        </Link>
-        <Link
-          href="https://www.instagram.com/reihanmanzis/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-          className="text-white text-lg font-mono underline"
-        >
-          Instagram
-        </Link>
-      </div>
+    <section id="contact" className="container mx-auto py-24">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative overflow-hidden rounded-[2rem] border border-primary-300/30 bg-gradient-to-br from-primary-400/60 via-primary-500/70 to-ink px-6 py-16 md:px-16 md:py-24"
+      >
+        <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
+        <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary-200/25 blur-[120px]" />
+
+        <div className="relative flex flex-col items-start gap-8">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary-100">
+            Contact
+          </p>
+          <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] md:text-7xl">
+            Have a project or a role in mind?
+          </h2>
+          <p className="max-w-2xl text-lg text-white/70">
+            Whether you need a full-time engineer for your team or a freelancer
+            for a specific build, I&apos;d like to hear about it. I usually reply
+            within a day.
+          </p>
+
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <a
+              href={`mailto:${site.email}`}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary-100 px-6 py-3.5 font-medium text-primary-500 transition-colors hover:bg-white"
+            >
+              <Mail size={18} /> {site.email}
+            </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-white transition-colors hover:border-primary-100 hover:text-primary-100"
+            >
+              {copied ? <Check size={18} /> : <Copy size={18} />}
+              {copied ? "Copied" : "Copy email"}
+            </button>
+          </div>
+
+          <div className="flex flex-wrap gap-x-8 gap-y-3 pt-4">
+            {channels.map((channel) => (
+              <a
+                key={channel.label}
+                href={channel.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-1 text-white/70 transition-colors hover:text-white"
+              >
+                {channel.label}
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
-

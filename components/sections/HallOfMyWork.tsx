@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import DeviceShowcase from "@/components/devices/DeviceShowcase";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { projects, type Project } from "@/lib/projects";
 
 const [featured, ...rest] = projects;
@@ -156,22 +157,11 @@ export default function HallOfMyWork() {
       id="work"
       className="container mx-auto flex flex-col gap-10 py-24 md:gap-14"
     >
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        viewport={{ once: true }}
-        className="flex flex-col items-center gap-4 text-center"
-      >
-        <h1 className="text-5xl font-bold font-sans md:text-7xl">
-          Hall of My Work
-        </h1>
-        <p className="max-w-2xl text-white/70">
-          Things I&apos;ve built for clients, companies and myself. Open any
-          project for the full story: the problem, what I did, and how it
-          turned out.
-        </p>
-      </motion.div>
+      <SectionHeading
+        eyebrow="Selected work"
+        title="Hall of my work"
+        description="Things I've built for clients, companies and myself. Open any project for the full story: what it is, what I did, and how it turned out."
+      />
 
       <FeaturedProject project={featured} />
 

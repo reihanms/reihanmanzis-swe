@@ -1,15 +1,11 @@
 "use client";
 
 import React from "react";
-import { MapPin, ExternalLink } from "lucide-react";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { motion } from "framer-motion";
+import { ArrowUpRight, MapPin } from "lucide-react";
+
+import SectionHeading from "@/components/ui/SectionHeading";
 
 import SynergyLogo from "@/assets/company/synergy.png";
 import FolkaTechLogo from "@/assets/company/folkatech.png";
@@ -147,120 +143,92 @@ const experienceData = [
   },
 ];
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const ProfessionalExperiences = () => {
+export default function ProfessionalExperiences() {
   return (
     <section
       id="experience"
-      className="py-20 flex flex-col items-center justify-center gap-10"
+      className="container mx-auto flex flex-col gap-12 py-24"
     >
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        viewport={{ once: true }}
-        className="text-5xl md:text-7xl font-bold font-sans text-center max-w-md"
-      >
-        Professional Experience
-      </motion.h1>
-      <motion.div
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.3,
-            },
-          },
-        }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        className="w-full max-w-4xl px-4"
-      >
-        <Accordion type="multiple" className="w-full font-mono">
-          {experienceData.map((exp, index) => (
-            <motion.div variants={itemVariants} key={index}>
-              <AccordionItem
-                value={`item-${index}`}
-                className="border-none mb-4"
-              >
-                <AccordionTrigger className="p-4 bg-primary-400 rounded-lg hover:no-underline cursor-pointer">
-                  <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center text-left">
-                    <span className="font-bold text-lg text-left">
-                      {exp.role} @ {exp.company}
-                    </span>
-                    <span className="text-left md:text-right mt-1 md:mt-0 text-sm md:text-base">
-                      {exp.date}
+      <SectionHeading
+        eyebrow="Experience"
+        title="Where I've worked"
+        description="Three years of production work, plus the internships that got me started."
+      />
+
+      <ol className="relative flex flex-col">
+        <span className="absolute bottom-2 left-[7px] top-2 w-px bg-gradient-to-b from-primary-200/60 via-white/10 to-transparent md:left-[calc(12rem+7px)]" />
+        {experienceData.map((exp, index) => (
+          <motion.li
+            key={`${exp.company}-${exp.role}`}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.05 }}
+            className="relative grid gap-3 pb-12 pl-10 last:pb-0 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-10 md:pl-0"
+          >
+            <span
+              className={`absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 md:left-48 ${
+                exp.date.includes("Present")
+                  ? "border-primary-200 bg-primary-200 shadow-[0_0_0_6px_rgba(80,204,96,0.15)]"
+                  : "border-white/30 bg-ink"
+              }`}
+            />
+            <p className="font-mono text-sm text-white/50 md:pt-0.5">
+              {exp.date}
+            </p>
+            <div className="flex flex-col gap-4 md:pl-10">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-xl font-semibold md:text-2xl">
+                    {exp.role}
+                  </h3>
+                  <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/55">
+                    {exp.website ? (
+                      <a
+                        href={`https://${exp.website}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-primary-100 hover:underline"
+                      >
+                        {exp.company} <ArrowUpRight size={14} />
+                      </a>
+                    ) : (
+                      <span className="text-primary-100">{exp.company}</span>
+                    )}
+                    <span className="inline-flex items-center gap-1">
+                      <MapPin size={14} /> {exp.location}
                     </span>
                   </div>
-                </AccordionTrigger>
-                <AccordionContent className="p-4 bg-primary-500 rounded-b-lg mt-1">
-                  {exp.logo && (
+                </div>
+                {exp.logo && (
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white p-1.5">
                     <Image
                       src={exp.logo}
                       alt={`${exp.company} logo`}
-                      width={100}
-                      height={100}
-                      className="object-contain block md:hidden mb-4"
+                      width={40}
+                      height={40}
+                      className="h-full w-full object-contain"
                     />
-                  )}
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="flex items-center gap-2">
-                          <MapPin size={16} />
-                          <span>{exp.location}</span>
-                        </div>
-                        {exp.website && (
-                        <a
-                          href={`https://${exp.website}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 hover:text-primary-100"
-                        >
-                          <ExternalLink size={16} />
-                          <span>{exp.website}</span>
-                        </a>
-                        )}
-                      </div>
-                      <div className="text-white font-sans mb-6">
-                        {exp.description}
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.skills.map((skill, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 bg-primary-300/20 text-sm rounded-full"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    {exp.logo && (
-                      <Image
-                        src={exp.logo}
-                        alt={`${exp.company} logo`}
-                        width={100}
-                        height={100}
-                        className="object-contain hidden md:block"
-                      />
-                    )}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </motion.div>
-          ))}
-        </Accordion>
-      </motion.div>
+                  </span>
+                )}
+              </div>
+              <div className="max-w-3xl leading-relaxed text-white/65">
+                {exp.description}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {exp.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full bg-white/5 px-3 py-1 text-xs text-white/70"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.li>
+        ))}
+      </ol>
     </section>
   );
-};
-
-export default ProfessionalExperiences;
-
+}

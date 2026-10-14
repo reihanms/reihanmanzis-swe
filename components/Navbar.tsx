@@ -1,91 +1,97 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+
 import Logo from "@/assets/images/logo.png";
-import { Divide as Hamburger } from "hamburger-react";
+import { cn } from "@/lib/utils";
+import { sections } from "@/lib/site";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Set to true if scrolled past the hero section (100vh)
-      setIsScrolled(window.scrollY > window.innerHeight * 0.1);
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: ">> hero", href: "/#hero" },
-    { name: "## expertise", href: "/#expertise" },
-    { name: "// experience", href: "/#experience" },
-    { name: "</> my work", href: "/#work" },
-    { name: "^^ about me", href: "/#about" },
-    { name: "@@ contact", href: "/#contact" },
-    {
-      name: ">> LinkedIn",
-      href: "https://www.linkedin.com/in/reihan-manzis-syahputra/",
-      target: "_blank",
-    },
-  ];
-
   return (
-    <>
+    <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
+        className={cn(
+          "mx-auto flex h-14 max-w-5xl items-center justify-between rounded-full border px-3 pl-5 transition-all duration-300",
           isScrolled || isOpen
-            ? "bg-primary-500/10 backdrop-blur-lg border-b border-primary-400/20"
-            : "bg-transparent"
-        }`}
+            ? "border-white/10 bg-[#0b151a]/75 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl"
+            : "border-transparent bg-transparent"
+        )}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <div className="flex-shrink-0">
-              <Link href="/" aria-label="Back to home">
-                <Image src={Logo} alt="Logo" width={120} height={120} />
-              </Link>
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                {navLinks.map((link) => (
-                  <Link key={link.name} href={link.href} target={link.target}>
-                    <span className="text-white hover:text-primary-100 px-3 py-2 rounded-md text-sm font-medium">
-                      {link.name}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div className="md:hidden">
-              <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
-            </div>
-          </div>
+        <Link href="/" aria-label="Back to home" onClick={() => setOpen(false)}>
+          <Image src={Logo} alt="Reihan Ms. logo" width={96} height={96} />
+        </Link>
+
+        <div className="hidden items-center gap-1 md:flex">
+          {sections.map((section) => (
+            <Link
+              key={section.id}
+              href={`/#${section.id}`}
+              className="rounded-full px-4 py-2 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+            >
+              {section.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Link
+            href="/#contact"
+            className="hidden rounded-full bg-primary-200 px-4 py-2 text-sm font-medium text-primary-500 transition-colors hover:bg-primary-100 sm:inline-flex"
+          >
+            Get in touch
+          </Link>
+          <button
+            type="button"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            onClick={() => setOpen((open) => !open)}
+            className="flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/5 md:hidden"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </nav>
-      {isOpen && (
-        <div className="fixed top-20 left-0 w-full bg-primary-500/10 backdrop-blur-lg z-40 md:hidden">
-          <div className="flex flex-col items-center space-y-4 py-4">
-            {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} target={link.target}>
-                <span
-                  className="text-white hover:text-primary-100 px-3 py-2 rounded-md text-sm font-medium"
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="mx-auto mt-2 max-w-5xl rounded-3xl border border-white/10 bg-[#0b151a]/90 p-3 backdrop-blur-xl md:hidden"
+          >
+            {[...sections, { id: "contact", label: "Contact" }].map(
+              (section) => (
+                <Link
+                  key={section.id}
+                  href={`/#${section.id}`}
                   onClick={() => setOpen(false)}
+                  className="block rounded-2xl px-4 py-3 text-white/80 hover:bg-white/5 hover:text-white"
                 >
-                  {link.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-    </>
+                  {section.label}
+                </Link>
+              )
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 
 export default Navbar;
-

@@ -9,15 +9,14 @@ import ScrollIndicator from "@/components/ScrollIndicator";
 import CustomCursor from "@/components/CustomCursor";
 
 export default function Home() {
-  // bg-[#0b151a]
   return (
-    <main className="bg-[#0b151a]">
+    <main className="bg-ink">
       <CustomCursor />
       <ScrollIndicator />
       <HeroSection />
+      <HallOfMyWork />
       <ExpertiseSection />
       <ProfessionalExperiences />
-      <HallOfMyWork />
       <AboutMe />
       <Contact />
       <Footer />
