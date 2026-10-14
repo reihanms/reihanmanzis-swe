@@ -48,6 +48,33 @@ const experienceData = [
     logo: SynergyLogo,
   },
   {
+    role: "Freelance Full-Stack Engineer",
+    company: "Upwork",
+    date: "2025 - Present",
+    location: "Remote",
+    description: (
+      <p>
+        Top Rated freelancer with a 100% Job Success score, building Next.js
+        products for clients abroad. <br /> <br />
+        My main engagement is GoTypical, a social decision layer for software
+        workflows. The idea and the product are my client&apos;s; I&apos;m the
+        lead engineer turning it into a working product, covering product
+        engineering, UI design, cloud and DevOps, from the first screen to
+        production.
+      </p>
+    ),
+    skills: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Stripe",
+      "Algolia",
+      "Vercel",
+      "Product Design",
+    ],
+  },
+  {
     role: "Full Stack Engineer",
     company: "FolkaTech",
     date: "2023 - 2024",
@@ -203,6 +230,7 @@ const ProfessionalExperiences = () => {
                           <MapPin size={16} />
                           <span>{exp.location}</span>
                         </div>
+                        {exp.website && (
                         <a
                           href={`https://${exp.website}`}
                           target="_blank"
@@ -212,6 +240,7 @@ const ProfessionalExperiences = () => {
                           <ExternalLink size={16} />
                           <span>{exp.website}</span>
                         </a>
+                        )}
                       </div>
                       <div className="text-white font-sans mb-6">
                         {exp.description}

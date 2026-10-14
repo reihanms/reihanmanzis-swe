@@ -1,260 +1,185 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
-import { motion } from "framer-motion";
-
-import Roam1 from "@/assets/roam-1.png";
-import Roam2 from "@/assets/roam-2.png";
-import Roam3 from "@/assets/roam-3-full.png";
-import Roam4 from "@/assets/roam-4.png";
-
-import IdeaboxThumbnail from "@/assets/ideabox-device.png";
-import Ideabox1 from "@/assets/Ideabox1.png";
-import Ideabox2 from "@/assets/Ideabox2.png";
-import Ideabox3 from "@/assets/Ideabox3.png";
-import Ideabox4 from "@/assets/Ideabox4.2.png";
-
-import AmoebaThumbail from "@/assets/amoeba-device.png";
-import Amoeba1 from "@/assets/LandingAmoeba1.png";
-import Amoeba2 from "@/assets/LandingAmoeba2.png";
-import Amoeba3 from "@/assets/LandingAmoeba3.png";
-import Amoeba4 from "@/assets/LandingAmoeba4.png";
-import OtherProjectCard from "../OtherProjectCard";
-
-import OtherProject1 from "@/assets/telkomsel-1.png";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-interface Project {
-  title: string;
-  description: string;
-  video?: string;
-  thumbnail?: StaticImageData;
-  images: (string | StaticImageData)[];
-  layout: "normal" | "reversed";
-  projectLink?: string;
+import DeviceShowcase from "@/components/devices/DeviceShowcase";
+import { projects, type Project } from "@/lib/projects";
+
+const [featured, ...rest] = projects;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const Meta = ({ project }: { project: Project }) => (
+  <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-primary-100">
+    {project.context} · {project.period}
+  </p>
+);
+
+const StackTags = ({ stack, limit }: { stack: string[]; limit?: number }) => {
+  const shown = limit ? stack.slice(0, limit) : stack;
+  const hidden = stack.length - shown.length;
+  return (
+    <div className="flex flex-wrap gap-2">
+      {shown.map((tech) => (
+        <span
+          key={tech}
+          className="rounded-full border border-primary-300/40 px-3 py-1 text-xs text-white/80"
+        >
+          {tech}
+        </span>
+      ))}
+      {hidden > 0 && (
+        <span className="rounded-full px-2 py-1 text-xs text-white/50">
+          +{hidden}
+        </span>
+      )}
+    </div>
+  );
+};
+
+function FeaturedProject({ project }: { project: Project }) {
+  return (
+    <motion.article
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative overflow-hidden rounded-3xl border border-primary-400/40 bg-gradient-to-br from-primary-500/80 via-[#0b151a] to-[#0b151a]"
+    >
+      <div className="pointer-events-none absolute -right-40 -top-40 h-[32rem] w-[32rem] rounded-full bg-primary-300/20 blur-[120px]" />
+      <div className="relative grid items-center gap-10 p-6 md:p-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-6 lg:p-14">
+        <div className="flex flex-col gap-6">
+          <span className="w-fit rounded-full bg-primary-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary-500">
+            Featured
+          </span>
+          <Meta project={project} />
+          <div>
+            <h3 className="text-5xl font-bold md:text-7xl">{project.title}</h3>
+            <p className="mt-3 text-lg text-white/70 md:text-xl">
+              {project.tagline}
+            </p>
+          </div>
+          <p className="text-base leading-relaxed text-white/80">
+            {project.summary}
+          </p>
+          <p className="text-sm text-white/60">
+            <span className="text-white">My role:</span> {project.role}
+          </p>
+          <StackTags stack={project.stack} limit={8} />
+          <div className="flex flex-wrap gap-3 pt-2">
+            <Link
+              href={`/work/${project.slug}`}
+              className="group inline-flex items-center gap-2 rounded-full bg-primary-200 px-5 py-3 text-sm font-bold text-primary-500 transition-colors hover:bg-primary-100"
+            >
+              Read case study
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm text-white transition-colors hover:border-primary-100 hover:text-primary-100"
+              >
+                Visit live site <ArrowUpRight size={16} />
+              </a>
+            )}
+          </div>
+        </div>
+        <DeviceShowcase
+          title={project.title}
+          desktop={project.devices.desktop}
+          tablet={project.devices.tablet}
+          mobile={project.devices.mobile}
+          intensity="hero"
+          className="order-first lg:order-none"
+        />
+      </div>
+    </motion.article>
+  );
 }
 
-const projects: Project[] = [
-  {
-    title: "ROAM",
-    description:
-      "A full-stack web application designed to connect travelers worldwide. Roam allows users to create, discover, and join group trips through an interactive map interface. Key features include real-time chat for trip coordination, a comprehensive user review system to build trust, and dynamic photo galleries for destinations, all powered by Next.js and Supabase.",
-    video: "/final-roam-showcase.mov",
-    images: [Roam1, Roam2, Roam3, Roam4],
-    layout: "normal",
-    projectLink: "https://roam-travel.vercel.app/",
-  },
-  {
-    title: "Ideabox",
-    description:
-      "An internal innovation platform for TelkomGroup, designed with a multitenant architecture to serve various divisions. It provides a collaborative space for employees to submit, discuss, and develop new concepts through features like dynamic idea feeds, commenting, and project team formation.",
-    thumbnail: IdeaboxThumbnail,
-    images: [Ideabox1, Ideabox2, Ideabox3, Ideabox4],
-    layout: "reversed",
-  },
-  {
-    title: "Amoeba Landing Page",
-    description:
-      "A visually captivating landing page for Digital Amoeba, designed to engage visitors with a playful and highly interactive user interface. The page leverages Framer Motion to deliver fluid animations and a memorable, dynamic browsing experience.",
-    thumbnail: AmoebaThumbail,
-    images: [Amoeba1, Amoeba2, Amoeba3, Amoeba4],
-    layout: "normal",
-  },
-];
-
-const otherProjects = [
-  {
-    title: "Telkomsel I-Recruitment",
-    description:
-      "A web application for Telkomsel's internal recruitment process. It allows users to apply for various positions and track their application status.",
-    technologies: [
-      "React",
-      "Node.js",
-      "TypeScript",
-      "Next.js",
-      "React Bootstrap",
-    ],
-    image: OtherProject1,
-  },
-];
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  return (
+    <motion.article
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.7, ease: "easeOut", delay: (index % 2) * 0.15 }}
+    >
+      <Link
+        href={`/work/${project.slug}`}
+        className="group flex h-full flex-col overflow-hidden rounded-3xl border border-primary-400/30 bg-primary-500/30 transition-colors duration-300 hover:border-primary-200/60 hover:bg-primary-500/50"
+      >
+        <div className="relative bg-gradient-to-b from-primary-400/30 to-transparent px-4 pt-8 md:px-8">
+          <DeviceShowcase
+            title={project.title}
+            desktop={project.devices.desktop}
+            tablet={project.devices.tablet}
+            mobile={project.devices.mobile}
+            intensity="card"
+          />
+        </div>
+        <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
+          <Meta project={project} />
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-3xl font-bold">{project.title}</h3>
+              <p className="mt-1 text-white/70">{project.tagline}</p>
+            </div>
+            <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 transition-all duration-300 group-hover:border-primary-100 group-hover:bg-primary-100 group-hover:text-primary-500">
+              <ArrowUpRight size={18} />
+            </span>
+          </div>
+          <div className="mt-auto pt-2">
+            <StackTags stack={project.stack} limit={4} />
+          </div>
+        </div>
+      </Link>
+    </motion.article>
+  );
+}
 
 export default function HallOfMyWork() {
   return (
     <section
       id="work"
-      className="pt-20 flex items-center justify-center flex-col overflow-hidden"
+      className="container mx-auto flex flex-col gap-10 py-24 md:gap-14"
     >
-      <motion.h1
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
         viewport={{ once: true }}
-        className="text-5xl md:text-7xl font-bold font-sans text-center"
+        className="flex flex-col items-center gap-4 text-center"
       >
-        Hall of My Work
-      </motion.h1>
+        <h1 className="text-5xl font-bold font-sans md:text-7xl">
+          Hall of My Work
+        </h1>
+        <p className="max-w-2xl text-white/70">
+          Things I&apos;ve built for clients, companies and myself. Open any
+          project for the full story: the problem, what I did, and how it
+          turned out.
+        </p>
+      </motion.div>
 
-      <div className="flex flex-col container mt-20">
-        {projects.map((project, index) => {
-          const isReversed = project.layout === "reversed";
-          const textVariants = {
-            hidden: { opacity: 0, x: isReversed ? 100 : -100 },
-            visible: {
-              opacity: 1,
-              x: 0,
-              transition: { duration: 0.8, ease: "easeOut" as const },
-            },
-          };
-          const mediaVariants = {
-            hidden: { opacity: 0, x: isReversed ? -100 : 100 },
-            visible: {
-              opacity: 1,
-              x: 0,
-              transition: { duration: 0.8, ease: "easeOut" as const },
-            },
-          };
+      <FeaturedProject project={featured} />
 
-          return (
-            <div key={index} className="flex flex-col mb-20">
-              <div
-                className={`flex flex-col ${
-                  isReversed ? "md:flex-row-reverse" : "md:flex-row"
-                } gap-10`}
-              >
-                <motion.div
-                  variants={textVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className={`w-full md:w-1/2 flex flex-col gap-4 justify-center text-center items-center ${
-                    isReversed
-                      ? "md:text-right md:items-end"
-                      : "md:text-left md:items-start"
-                  }`}
-                >
-                  <h2 className="text-6xl md:text-8xl font-bold font-sans">
-                    {project.title}
-                  </h2>
-                  <p className="text-lg md:text-xl text-white font-mono">
-                    {project.description}
-                  </p>
-                  <div
-                    className={`justify-between items-center w-full hidden md:flex ${
-                      isReversed ? "flex-row-reverse" : "flex-row"
-                    }`}
-                  >
-                    <span className="cursor-pointer underline text-primary-100 font-sans mt-5"></span>
-                    {project.projectLink && (
-                      <Link href={project.projectLink} target="_blank">
-                        <button className="flex items-center gap-2 bg-primary-300 text-white px-4 py-3 hover:bg-primary-400 transition-colors cursor-pointer rounded-sm">
-                          <span className="font-mono font-medium">
-                            VIEW PROJECT
-                          </span>
-                        </button>
-                      </Link>
-                    )}
-                  </div>
-                </motion.div>
-                <motion.div
-                  variants={mediaVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="w-full md:w-1/2"
-                >
-                  {project.video ? (
-                    <video
-                      src={project.video}
-                      autoPlay
-                      loop
-                      muted
-                      className="rounded-lg"
-                    />
-                  ) : (
-                    <Image
-                      src={project.thumbnail as StaticImageData}
-                      alt={`${project.title} thumbnail`}
-                      className="rounded-lg object-cover"
-                    />
-                  )}
-                </motion.div>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.4 }}
-                viewport={{ once: true }}
-                className="mt-4 overflow-x-auto flex gap-4 scrollbar-hide"
-              >
-                {[...project.images, ...project.images].map((image, i) => (
-                  <div key={i} className="flex-shrink-0 max-h-[225px]">
-                    <Image
-                      src={image}
-                      alt={`${project.title} screenshot ${i + 1}`}
-                      width={200}
-                      height={225}
-                      className="rounded-lg object-cover max-h-[225px] object-top"
-                    />
-                  </div>
-                ))}
-              </motion.div>
-              {project.projectLink && (
-                <Link
-                  href={project.projectLink}
-                  target="_blank"
-                  className="md:hidden flex justify-center mt-4"
-                >
-                  <button className="flex items-center gap-2 bg-primary-300 text-white px-4 py-3 hover:bg-primary-400 transition-colors cursor-pointer rounded-sm">
-                    <span className="font-mono font-medium">VIEW PROJECT</span>
-                  </button>
-                </Link>
-              )}
-            </div>
-          );
-        })}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="flex flex-col mt-20"
-        >
-          <h1 className="text-xl font-sans font-bold mb-6">
-            Other Noteworthy Projects
-          </h1>
-          <motion.div
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: { staggerChildren: 0.3 },
-              },
-            }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {otherProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-              >
-                <OtherProjectCard
-                  title={project.title}
-                  description={project.description}
-                  technologies={project.technologies}
-                  image={project.image}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
+      <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+        {rest.map((project, index) => (
+          <ProjectCard key={project.slug} project={project} index={index} />
+        ))}
       </div>
     </section>
   );
 }
-

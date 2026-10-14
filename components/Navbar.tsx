@@ -20,20 +20,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   const navLinks = [
-    { name: ">> hero", href: "#hero" },
-    { name: "## expertise", href: "#expertise" },
-    { name: "// experience", href: "#experience" },
-    { name: "</> my work", href: "#work" },
-    { name: "^^ about me", href: "#about" },
-    { name: "@@ contact", href: "#contact" },
+    { name: ">> hero", href: "/#hero" },
+    { name: "## expertise", href: "/#expertise" },
+    { name: "// experience", href: "/#experience" },
+    { name: "</> my work", href: "/#work" },
+    { name: "^^ about me", href: "/#about" },
+    { name: "@@ contact", href: "/#contact" },
     {
       name: ">> LinkedIn",
       href: "https://www.linkedin.com/in/reihan-manzis-syahputra/",
@@ -53,9 +46,9 @@ const Navbar = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex-shrink-0">
-              <button onClick={scrollToTop}>
+              <Link href="/" aria-label="Back to home">
                 <Image src={Logo} alt="Logo" width={120} height={120} />
-              </button>
+              </Link>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
