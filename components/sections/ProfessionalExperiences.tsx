@@ -21,7 +21,7 @@ const experienceData = [
     role: "Software Engineer II",
     company: "Synergy Financial Advisers Ltd",
     date: "2024 - Present",
-    location: "Batam & Singapore",
+    location: "Singapore · Remote",
     website: "synergy.com.sg",
     description: (
       <p>

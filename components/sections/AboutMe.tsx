@@ -36,8 +36,8 @@ export default function AboutMe() {
 
               <p className="text-white text-base md:text-lg text-center md:text-left">
                 Today I&apos;m a Software Engineer II at{" "}
-                <strong>Synergy Financial Advisers</strong>, working with a team
-                across Singapore and Indonesia. I build the company&apos;s core
+                <strong>Synergy Financial Advisers</strong>, a Singapore
+                company, working remotely on its Singapore team. I build its core
                 super app in Next.js, with a focus on performance and secure
                 sign-in (Passkey, OAuth). On the side, I freelance on Upwork as
                 a Top Rated engineer, where I lead the build of{" "}
