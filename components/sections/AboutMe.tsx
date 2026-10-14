@@ -28,24 +28,24 @@ export default function AboutMe() {
                 Over the years,
               </h1>
               <p className="text-white text-base md:text-lg text-center md:text-left">
-                I&apos;ve built products for companies and businesses ranging
-                from marketing websites, internal applications to complex
-                solutions and enterprise apps with focus on fast, elegant and
-                accessible user experiences.
+                I&apos;ve built products for companies and businesses, from
+                marketing websites and internal tools to complex enterprise
+                apps, always with a focus on fast, elegant and accessible user
+                experiences.
               </p>
 
               <p className="text-white text-base md:text-lg text-center md:text-left">
-                My journey has led me to my current role as a Software Engineer
-                at <strong>Synergy Financial Advisers</strong>, where I operate
-                in a dynamic international setting across Singapore and
-                Indonesia. Here, I&apos;m engineering a core super-app with
-                Next.js, focusing on critical aspects like performance, and
-                robust, multi-factor authentication (Passkey, OAuth) to deliver
-                a secure and seamless experience.
+                Today I&apos;m a Software Engineer II at{" "}
+                <strong>Synergy Financial Advisers</strong>, working with a team
+                across Singapore and Indonesia. I build the company&apos;s core
+                super app in Next.js, with a focus on performance and secure
+                sign-in (Passkey, OAuth). On the side, I freelance on Upwork as
+                a Top Rated engineer, where I lead the build of{" "}
+                <strong>GoTypical</strong> for a client.
               </p>
 
               <p className="text-white text-base md:text-lg text-center md:text-left">
-                This role builds upon my full-stack foundation from{" "}
+                That builds on my full-stack foundation from{" "}
                 <strong>FolkaTech</strong>, where I architected end-to-end
                 solutions with Nest.js, PostgreSQL, and Docker, and my creative
                 frontend work at <strong>Telkom Indonesia</strong>, where I
@@ -54,10 +54,8 @@ export default function AboutMe() {
               </p>
 
               <p className="text-white text-base md:text-lg text-center md:text-left">
-                Driven by a desire for continuous growth, I am now seeking to
-                apply my skills in a challenging. I am eager to collaborate with
-                a global team to build products that not only solve complex
-                problems but also deliver exceptional user experiences.
+                Next, I want to work with a global team on products that solve
+                hard problems and still feel great to use.
               </p>
             </motion.div>
             <motion.div

@@ -18,31 +18,28 @@ import TelkomselLogo from "@/assets/company/telkomsel.png";
 
 const experienceData = [
   {
-    role: "Software Engineer (Frontend)",
+    role: "Software Engineer II",
     company: "Synergy Financial Advisers Ltd",
     date: "2024 - Present",
     location: "Batam & Singapore",
     website: "synergy.com.sg",
     description: (
       <p>
-        Engineered a comprehensive super app using Next.js, optimizing
-        performance with utilize Next.js app router features to enhance SEO and
-        user experience to streamline the company&apos;s business operations,
-        following industry best practices and writing well-structured,
-        maintainable, and scalable code. <br /> <br />
-        Developed and enhanced authentication security by implementing multiple
-        authentication methods, including OAuth, Passkey, Credentials, and QR
-        code authentication, ensuring robust security and seamless user
-        experience.
+        I build the company&apos;s core super app in Next.js, using the App
+        Router to keep it fast and search-friendly while it streamlines the
+        team&apos;s day-to-day business operations. <br /> <br />
+        I also built sign-in with OAuth, Passkey, credentials and QR-code
+        login, so accounts stay secure without slowing anyone down. Alongside that, I
+        review code across the team and write the technical documentation.
       </p>
     ),
     skills: [
-      "NextJS",
+      "Next.js",
       "TypeScript",
-      "Notion workflow automation",
-      "Fast paced development",
-      "Create Technical Documentation",
+      "Authentication",
       "Code Review",
+      "Technical Documentation",
+      "Notion Automation",
       "International Collaboration",
     ],
     logo: SynergyLogo,
@@ -82,14 +79,12 @@ const experienceData = [
     website: "folkatech.com",
     description: (
       <p>
-        Developed and deployed robust full-stack solutions leveraging modern
-        technologies, ensuring high performance, scalability, and client
-        satisfaction. <br /> <br />
-        Streamlined development processes by writing clean, reusable, and
-        well-documented code, reducing bug occurrences and improving team
-        collaboration. <br /> <br /> Optimized performance across the tech
-        stack, leading to faster load times and improved application
-        responsiveness.
+        Built and shipped full-stack projects for the agency&apos;s clients:
+        Next.js, React and Vue on the front end, NestJS and Laravel on the back
+        end, with PostgreSQL and MySQL underneath. <br /> <br />
+        I wrote reusable, documented code to cut down on bugs, tuned
+        performance across the stack so apps loaded and responded faster, and
+        fit each client&apos;s requirements into tight deadlines.
       </p>
     ),
     skills: [
@@ -99,64 +94,55 @@ const experienceData = [
       "Docker",
       "CI/CD",
       "Laravel",
-      "NextJS",
+      "Next.js",
       "Software Architecture",
     ],
     logo: FolkaTechLogo,
   },
   {
-    role: "Front-End Web Developer",
+    role: "Front-End Developer Intern",
     company: "Telkom Indonesia",
     date: "2023",
     location: "Bandung, Indonesia",
     website: "digitalamoeba.id",
     description: (
       <p>
-        Professionally collaborated in developing application using the Agile
-        Scrum method. <br />
-        <br />
-        Carried out on daily, weekly and monthly meetings to discuss about the
-        project, doing mentoring, and reporting work progress.
-        <br /> <br />• Final Project : Develop a Website-based landing page for
-        Digital Amoeba that have interactive design and playful interface. Built
-        with NEXT JS, Laravel, and Framer Motion for the animation and React
-        Bootstrap for the UI library, the project is developed successfully and
-        have positive feedback from the users.
+        Front-end intern at Digital Amoeba, Telkom Indonesia&apos;s corporate
+        innovation lab, working in an Agile Scrum team. <br /> <br />
+        I built the lab&apos;s new landing page with Next.js and Framer Motion,
+        a playful, animation-heavy page that landed well with its users, and
+        worked on the front end of Ideabox, a multitenant idea platform for
+        TelkomGroup.
       </p>
     ),
     skills: [
-      "Agile Scrum",
+      "Next.js",
+      "React",
       "Framer Motion",
-      "NextJS",
-      "Collaboration",
-      "Mentoring",
-      "TypeScript",
-      "Business Development",
+      "Laravel",
+      "React Bootstrap",
+      "Agile Scrum",
     ],
     logo: TelkomLogo,
   },
   {
-    role: "Software Developer",
+    role: "Software Developer Intern",
     company: "Telkomsel",
     date: "2022",
     location: "Jakarta, Indonesia",
     website: "telkomsel.com",
     description: (
       <p>
-        Worked passionately in software development position and IT Directorate,
-        Completed more than 10 class courses, contains modern technology
-        framework learning modules (Next JS, Nest JS, React JS, Yii2), API
-        learning modules, Software Architecture, Software testing, and how to
-        work professionally in Udemy learning platform <br /> <br />
-        Develop Job Portal Web Based Application that will used as telkomsel
-        recruitment platform for user. Built with JavaScript modern technology
-        such as Next JS, Nest JS, and MySQL as the database. Improved web
-        performance, user experience and interface up to 70% from the previous
-        application.
+        Software development intern in Telkomsel&apos;s IT Directorate.{" "}
+        <br /> <br />
+        I built I-Recruitment, a job portal for Telkomsel&apos;s recruitment,
+        with Next.js, NestJS and MySQL, plus a coaching and counseling web app
+        with Yii2 and PostgreSQL. Along the way I finished 10+ courses on
+        Next.js, NestJS, React, APIs, software architecture and testing.
       </p>
     ),
 
-    skills: ["React", "API Integration", "Yii2", "MySQL", "Software testing"],
+    skills: ["Next.js", "NestJS", "React", "Yii2", "MySQL", "Software Testing"],
     logo: TelkomselLogo,
   },
 ];
