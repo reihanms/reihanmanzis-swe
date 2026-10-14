@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
 
 import Portrait from "@/assets/images/reihan.jpg";
+import { site } from "@/lib/site";
 
 const stats = [
   { value: "Top Rated", label: "on Upwork, with 100% Job Success" },
@@ -108,6 +109,13 @@ export default function HeroSection() {
           >
             Get in touch <ArrowUpRight size={18} />
           </Link>
+          <a
+            href={site.cv}
+            download
+            className="inline-flex items-center gap-2 rounded-full px-4 py-3.5 text-white/70 transition-colors hover:text-primary-100"
+          >
+            <Download size={18} /> Download CV
+          </a>
         </motion.div>
 
         <motion.dl

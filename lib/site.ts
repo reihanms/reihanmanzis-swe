@@ -1,6 +1,7 @@
 export const site = {
   name: "Reihan Manzis",
   email: "reihanmanzis1@gmail.com",
+  cv: "/Reihan-Manzis-Syahputra-CV.pdf",
   links: {
     linkedin: "https://www.linkedin.com/in/reihan-manzis-syahputra/",
     github: "https://github.com/reihanms",

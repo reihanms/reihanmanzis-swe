@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Check, Copy, Mail } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Download, Mail } from "lucide-react";
 
 import { site } from "@/lib/site";
 
@@ -65,6 +65,13 @@ export default function Contact() {
               {copied ? <Check size={18} /> : <Copy size={18} />}
               {copied ? "Copied" : "Copy email"}
             </button>
+            <a
+              href={site.cv}
+              download
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-white transition-colors hover:border-primary-100 hover:text-primary-100"
+            >
+              <Download size={18} /> Download CV
+            </a>
           </div>
 
           <div className="flex flex-wrap gap-x-8 gap-y-3 pt-4">
