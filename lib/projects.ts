@@ -112,6 +112,7 @@ export const projects: Project[] = [
       "Added realtime direct messages with Pusher and transactional email with Resend.",
       "Run the cloud and DevOps side on Vercel: a two-step release pipeline with versioned tags, daily backups with a rehearsed disaster-recovery runbook, bot protection and rate limits, and error monitoring with Sentry.",
       "Took the site from a 94 to a 100 technical SEO health score and cut crawl errors from 166 to 2 in about ten weeks, tracked through weekly Ahrefs audits.",
+      "Built the project's AI-native delivery system: a living knowledge base of its architecture, patterns, rules and decisions, plus review, test and build gates, so AI agents ship features end to end without lowering quality.",
     ],
     devices: {
       desktop: GtDesktopHome,

@@ -68,7 +68,7 @@ export default function HeroSection() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-200 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-200" />
               </span>
-              Open to remote roles & freelance work
+              Open to new opportunities
             </span>
           </span>
         </motion.div>
@@ -89,7 +89,8 @@ export default function HeroSection() {
         >
           I&apos;m a Software Engineer II at a Singapore company and a Top Rated
           freelancer on Upwork. I work across TypeScript, Next.js and NestJS,
-          from the first screen to production.
+          and I build AI-native: agents move fast, while each project&apos;s
+          context, reviews and tests keep the quality bar high.
         </motion.p>
 
         <motion.div {...rise(0.3)} className="flex flex-wrap gap-3">

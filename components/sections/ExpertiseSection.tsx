@@ -3,6 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
+  ArrowRight,
+  Bot,
   Cloud,
   CreditCard,
   Layers,
@@ -20,18 +22,20 @@ interface Expertise {
   description: string;
   proof: string;
   tools: string[];
+  steps?: string[];
   className?: string;
 }
 
 const expertise: Expertise[] = [
   {
-    icon: <LayoutTemplate size={22} />,
-    title: "Front-end engineering",
+    icon: <Bot size={22} />,
+    title: "AI-native development",
     description:
-      "Fast, accessible interfaces with the Next.js App Router, server rendering and careful caching, plus motion where it actually helps.",
-    proof: "GoTypical's marketing site and app · Synergy's super app",
-    tools: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    className: "md:col-span-2",
+      "I build with AI agents every day, set up so that speed never costs quality. Each project gets its own knowledge base of architecture, patterns, rules and decisions, so the AI starts every task with full context, and every change still passes review, tests and a build before it ships.",
+    proof: "GoTypical, built end to end this way · AI-assisted delivery at Synergy",
+    tools: ["AI agents", "Claude Code", "Project knowledge bases", "Review gates"],
+    steps: ["Project context", "Build with agents", "Review & test", "Ship"],
+    className: "md:col-span-2 border-primary-200/30 bg-primary-500/40",
   },
   {
     icon: <ShieldCheck size={22} />,
@@ -40,6 +44,14 @@ const expertise: Expertise[] = [
       "Sign-in that is secure without getting in the way: OAuth, Passkey, credentials and QR-code login.",
     proof: "Synergy · thesis on Next.js security against the OWASP Top 10",
     tools: ["OAuth", "Passkey", "OWASP"],
+  },
+  {
+    icon: <LayoutTemplate size={22} />,
+    title: "Front-end engineering",
+    description:
+      "Fast, accessible interfaces with the Next.js App Router, server rendering and careful caching, plus motion where it actually helps.",
+    proof: "GoTypical's marketing site and app · Synergy's super app",
+    tools: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
     icon: <Layers size={22} />,
@@ -69,10 +81,10 @@ const expertise: Expertise[] = [
     icon: <PenTool size={22} />,
     title: "Product & UI design",
     description:
-      "From a client's idea to a design system and a shipped product, with AI tools speeding up the loop.",
-    proof: "GoTypical's design system · Claude Code and Cursor every day",
-    tools: ["Design systems", "UI design", "Claude Code", "Cursor"],
-    className: "md:col-span-3",
+      "From a client's idea to a design system and a shipped product: layouts, components and the details that make an interface feel considered.",
+    proof: "GoTypical's design system, marketing site and app",
+    tools: ["Design systems", "UI design", "Product thinking"],
+    className: "md:col-span-2",
   },
 ];
 
@@ -117,6 +129,20 @@ export default function ExpertiseSection() {
                 {item.description}
               </p>
             </div>
+            {item.steps && (
+              <ol className="flex flex-wrap items-center gap-2 font-mono text-xs text-white/80">
+                {item.steps.map((step, i, all) => (
+                  <li key={step} className="flex items-center gap-2">
+                    <span className="rounded-full border border-primary-200/40 bg-primary-400/30 px-3 py-1">
+                      {step}
+                    </span>
+                    {i < all.length - 1 && (
+                      <ArrowRight size={14} className="text-primary-100/60" />
+                    )}
+                  </li>
+                ))}
+              </ol>
+            )}
             <p className="font-mono text-xs leading-relaxed text-primary-100/80">
               ↳ {item.proof}
             </p>

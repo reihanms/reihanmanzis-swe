@@ -14,7 +14,10 @@ const facts = [
   },
   { label: "Languages", value: "English (fluent), Indonesian (native)" },
   { label: "Time zone", value: "UTC+7, used to working with Singapore" },
-  { label: "Open to", value: "Remote full-time roles and freelance projects" },
+  {
+    label: "Open to",
+    value: "New opportunities: full-time, contract or freelance",
+  },
 ];
 
 export default function AboutMe() {
@@ -79,7 +82,15 @@ export default function AboutMe() {
               Agile team.
             </p>
             <p>
-              Next, I want to work with a global team on products that solve
+              These days I build with AI agents every day. Every project I run
+              has its own knowledge base of architecture, patterns, rules and
+              past decisions, so the AI starts each task with full context, and
+              every change still goes through review and testing before it
+              ships. I get to move several projects forward at once without
+              lowering the bar.
+            </p>
+            <p>
+              Next, I want to work with a great team on products that solve
               hard problems and still feel great to use.
             </p>
           </motion.div>

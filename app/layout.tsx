@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Reihan Manzis | Full-Stack Engineer",
   description:
-    "Reihan Manzis is a full-stack engineer building Next.js products end to end: Software Engineer II at a Singapore company and a Top Rated freelancer on Upwork.",
+    "Reihan Manzis is an AI-native full-stack engineer building Next.js products end to end: Software Engineer II at a Singapore company and a Top Rated freelancer on Upwork.",
 };
 
 export default function RootLayout({
