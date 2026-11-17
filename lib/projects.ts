@@ -42,6 +42,7 @@ export interface ProjectVideo {
   title: string;
   caption: string;
   url: string;
+  featured?: boolean;
 }
 
 export interface Project {
@@ -120,6 +121,14 @@ export const projects: Project[] = [
       mobile: GtMobileAppFeed,
     },
     videos: [
+      {
+        src: "/videos/gotypical-stack-audit.mp4",
+        title: "Stack Audit",
+        caption:
+          "A five-minute audit that prices your AI stack and finds what to cut. A motion film I designed and rendered in code with HyperFrames.",
+        url: "gotypical.com",
+        featured: true,
+      },
       {
         src: "/videos/gotypical-decision-agent.mp4",
         title: "Decision Agent",

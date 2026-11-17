@@ -171,7 +171,10 @@ export default async function ProjectPage({ params }: PageProps) {
             <SectionTitle>In action</SectionTitle>
             <div className="grid gap-6 lg:grid-cols-2">
               {project.videos.map((video) => (
-                <MotionWrapper key={video.src} className="flex flex-col gap-3">
+                <MotionWrapper
+                  key={video.src}
+                  className={`flex flex-col gap-3 ${video.featured ? "lg:col-span-2" : ""}`}
+                >
                   <BrowserFrame url={video.url}>
                     <video
                       src={video.src}
